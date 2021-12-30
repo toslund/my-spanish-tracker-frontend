@@ -95,7 +95,7 @@ export default {
       // url.searchParams.set('limit', 100);
       const options = {
         method: 'GET',
-        // headers: { Authorization: `Bearer ${this.authToken}` },
+        headers: { Authorization: `Bearer ${this.authToken}` },
         url,
       };
       const response = await axios(

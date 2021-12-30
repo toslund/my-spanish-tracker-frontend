@@ -5,6 +5,7 @@
     >
       <v-progress-linear
       v-if="assessing"
+      color="accent"
       :value="(totalQuestionsAnswered/(totalQuestionsAnswered+totalQuestionsToGo))*100"></v-progress-linear>
       <v-card
         class='quiz-card mx-auto'
@@ -230,7 +231,7 @@
 </template>
 
 <script>
-// import HelloWorld from '../components/HelloWorld.vue';
+// import Welcome from '../components/Welcome.vue';
 import { v4 as uuidv4 } from 'uuid';
 // import Cookies from 'js-cookie';
 import axios from 'axios';
@@ -342,10 +343,17 @@ export default {
     },
     async getDeckAssessment() {
       console.log('getting deck assessment');
-      console.log(`${this.deckEndpoint}/${this.savedDeckUUID}/assessment`);
+      const url = new URL(`${this.deckEndpoint}/${this.savedDeckUUID}/assessment`);
       // const url = new URL(this.deckEndpoint);
-      const response = await axios.get(`${this.deckEndpoint}/${this.savedDeckUUID}/assessment`);
-      console.log(response);
+      const headers = this.isLoggedIn ? { Authorization: `Bearer ${this.authToken}` } : null;
+      const options = {
+        method: 'GET',
+        headers,
+        url, 
+      };
+      const response = await axios(
+        options,
+      );
       return response;
     },
     async getQuestion() {
@@ -357,8 +365,10 @@ export default {
       console.log('awaiting axios?');
       const url = new URL(`${this.deckEndpoint}/${this.assessment.deck_uuid}/question`);
       url.searchParams.set('vocab_uuid', vocabUUID);
+      const headers = this.isLoggedIn ? { Authorization: `Bearer ${this.authToken}` } : null;
       const options = {
         method: 'GET',
+        headers,
         url, 
       };
       const response = await axios(
@@ -577,6 +587,9 @@ export default {
     },
     isSuperUser() {
       return this.$store.getters.isSuperUser;
+    },
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
     },
     authToken() {
       return this.$store.getters.authToken;

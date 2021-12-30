@@ -18,7 +18,7 @@
 </template>
 
 <script>
-// import HelloWorld from '../components/HelloWorld.vue';
+// import Welcome from '../components/Welcome.vue';
 import axios from 'axios';
 
 export default {

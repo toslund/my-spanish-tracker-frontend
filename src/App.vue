@@ -2,8 +2,8 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
-      dark
+      color="grey lighten-5"
+      class="accent-border"
     >
       <div class="d-flex align-center">
         <v-img
@@ -23,8 +23,6 @@
       <v-menu v-if="isLoggedIn" offset-y>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
-            color="primary"
-            dark
             v-bind="attrs"
             v-on="on"
           >
@@ -81,3 +79,8 @@ export default {
   },
 };
 </script>
+<style>
+.v-toolbar__content{
+  border-top: 4px solid #AA151B !important;
+}
+</style>
