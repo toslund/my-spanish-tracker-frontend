@@ -478,14 +478,14 @@ export default {
             this.somethingsWrong = false;
           })
           .catch((error) => {
-            if (!error.status) {
+            if (error.response.data.detail === 'Deck not found') {
+              console.log('deck not found');
+              this.resetDeck();
+            } else if (!error.status) {
               // network error
               console.log('network error');
               this.somethingsWrong = true;
               console.log(error);
-            } else if (error.response.data.detail === 'Deck not found') {
-              console.log('deck not found');
-              this.resetDeck();
             }
           });
       // .then(() => { this.questionIndex = this.questions.length - 1; });

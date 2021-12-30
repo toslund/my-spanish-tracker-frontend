@@ -36,10 +36,11 @@ const store = new Vuex.Store({
       window.localStorage.removeItem('deckToken');
       state.deckToken = null;
     },
-    logOut(state) {
+    logOut(state, mutations) {
       // TODO user logs out but deck stays - better solution
       window.localStorage.removeItem('authPayload');
       state.authPayload = null;
+      mutations.removeSavedDeck();
     },
   },
   getters: {

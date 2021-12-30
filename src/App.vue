@@ -52,19 +52,40 @@
 </template>
 
 <script>
+import axios from 'axios';
 import LogInDialog from './components/LogInDialog.vue';
 
 export default {
   components: { LogInDialog },
   name: 'App',
   data: () => ({
-    //
+    apiEndpoint: process.env.VUE_APP_API_URL,
   }),
   methods: {
     logOut() {
       this.$store.commit('logOut');
-      this.$store.commit('removeSavedDeck');
     },
+  },
+  mounted() {
+    if (this.isLoggedIn) {
+      const headers = this.isLoggedIn ? { Authorization: `Bearer ${this.authToken}` } : null;
+      const url = new URL(`${this.apiEndpoint}/users/me`);
+      const options = {
+        method: 'GET',
+        headers,
+        url, 
+      };
+      axios(
+        options,
+      ).then((response) => {
+        console.log('got /me');
+        console.log(response.data);
+      }).catch((error) => {
+        console.log('error in getting /me');
+        console.log(error);
+        this.logOut();
+      });
+    }
   },
   computed: {
     isSuperUser() {
