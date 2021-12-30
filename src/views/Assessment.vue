@@ -132,7 +132,7 @@
             <v-card-actions class="justify-center">
               <v-btn
                 color="error"
-                @click="nextQuestion"
+                @click="nextQuestion(); confirmDontKnowWord = false;"
               >
                 I don't know this word
               </v-btn>
@@ -475,11 +475,15 @@ export default {
           .then((response) => {
             this.assessment = response.data;
             this.cardConfirmContinueAssessment = true;
+            this.somethingsWrong = false;
           })
           .catch((error) => {
-            console.log(error);
-            console.log(error.response);
-            if (error.response.data.detail === 'Deck not found') {
+            if (!error.status) {
+              // network error
+              console.log('network error');
+              this.somethingsWrong = true;
+              console.log(error);
+            } else if (error.response.data.detail === 'Deck not found') {
               console.log('deck not found');
               this.resetDeck();
             }
