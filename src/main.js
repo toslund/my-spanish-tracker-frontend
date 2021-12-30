@@ -12,7 +12,7 @@ Vue.config.productionTip = false;
 const store = new Vuex.Store({
   state: {
     count: 0,
-    authPayload: JSON.parse(window.localStorage.getItem('authPayload')),
+    authPayload: JSON.parse(window.localStorage.getItem('authPayload')) || { access_token: null, token_type: null },
     deckToken: window.localStorage.getItem('deckToken'),
   },
   mutations: {
@@ -56,7 +56,7 @@ const store = new Vuex.Store({
     },
     authToken: (state) => state.authPayload.access_token,
     parsedAuth: (state, getters) => {
-      if (state.authPayload === null) { return null; }
+      if (getters.authToken === null) { return null; }
       const encodedAuth = getters.authToken.split('.')[1];
       const decodedAuth = Buffer.from(encodedAuth, 'base64').toString();
       const parsedAuth = JSON.parse(decodedAuth);

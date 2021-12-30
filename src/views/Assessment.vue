@@ -3,6 +3,46 @@
     <div 
     class="content mx-auto"
     >
+      <v-card
+        class='quiz-card mx-auto'
+        max-width="500"
+        justify="center"
+        v-if="cardConfirmContinueAssessment"
+      >
+        <v-card-title class='justify-center black--text text--darken-4'>Continue with your assessment?</v-card-title>
+        <v-card-text class="text-center">
+          You have {{ totalQuestionsToGo }} questions to go.
+        </v-card-text>
+        <v-card-actions class="justify-center">
+          <v-btn
+            color="success"
+            @click="handleContinueAssessment"
+          >
+            Continue
+          </v-btn>
+          <v-btn
+            color="error"
+            @click="resetDeck(); cardConfirmContinueAssessment=false;"
+          >
+            Start Over
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+      <v-card
+        class='quiz-card mx-auto'
+        max-width="500"
+        justify="center"
+        v-if="somethingsWrong"
+      >
+        <v-card-title class='justify-center black--text text--darken-4'>Something went wrong...</v-card-title>
+        <v-card-actions class="justify-center">
+          <v-btn
+            @click="refresh"
+          >
+            Try Again
+          </v-btn>
+        </v-card-actions>
+      </v-card>
       <v-progress-linear
       v-if="assessing"
       color="accent"
@@ -242,6 +282,15 @@ export default {
   name: 'Assessment',
   components: { HelpDialog, ProgressDialog },
   methods: {
+    handleContinueAssessment() {
+      this.cardConfirmContinueAssessment = false;
+      this.assessing = true;
+      this.nextQuestion();
+    },
+    refresh() {
+      console.log('trying to refresh');
+      this.initAssessment();
+    },
     nextQuestion() {
       console.log('NEXT QUESTION');
       if (this.assessment.questions.length === 0 && this.assessment.prediction !== null) {
@@ -398,6 +447,50 @@ export default {
     itemRowBackground(item) {
       return item.lemma.rank % 2 ? 'cell-odd' : 'cell-even';
     },
+    initAssessment() {
+      // this.getVocabs();
+      if (this.savedDeckUUID === null) {
+        console.log('will try to create deck');
+        this.createDeck().then((response) => {
+          this.$store.commit('setDeck', response.data.deck_token);
+          return this.getDeckAssessment();
+        }).then((response) => {
+          this.assessment = response.data;
+          this.assessing = true;
+          this.nextQuestion();
+        }).catch((error) => {
+          if (!error.status) {
+          // network error
+            console.log('network error');
+            this.somethingsWrong = true;
+            console.log(error);
+          } else {
+            console.log(error);
+            console.log(error.response);
+            this.error = error.response.data.detail;
+          }
+        });
+      } else {
+        this.getDeckAssessment()
+          .then((response) => {
+            this.assessment = response.data;
+            this.cardConfirmContinueAssessment = true;
+          })
+          .catch((error) => {
+            console.log(error);
+            console.log(error.response);
+            if (error.response.data.detail === 'Deck not found') {
+              console.log('deck not found');
+              this.resetDeck();
+            }
+          });
+      // .then(() => { this.questionIndex = this.questions.length - 1; });
+      }
+    },
+    resetDeck() {
+      this.$store.commit('removeSavedDeck');
+      this.initAssessment();
+    },
   },
   watch: {
     options: {
@@ -409,7 +502,9 @@ export default {
   },
   data() {
     return {
-      assessing: true,
+      assessing: false,
+      cardConfirmContinueAssessment: false,
+      somethingsWrong: false,
       doneAssessing: false,
       dialogHelp: false,
       dialogKnowWord: false,
@@ -612,33 +707,7 @@ export default {
     },
   },
   mounted() {
-    // this.getVocabs();
-    if (this.savedDeckUUID === null) {
-      console.log('will try to create deck');
-      this.createDeck().then((response) => {
-        this.$store.commit('setDeck', response.data.deck_token);
-        return this.getDeckAssessment();
-      }).then((response) => {
-        this.assessment = response.data;
-        this.nextQuestion();
-      });
-    } else {
-      this.getDeckAssessment()
-        .then((response) => {
-          this.assessment = response.data;
-          this.nextQuestion();
-        })
-        .catch((error) => {
-          console.log(error);
-          console.log(error.response);
-          if (error.response.data.detail === 'Deck not found') {
-            console.log('deck not found');
-            this.$store.commit('removeSavedDeck');
-            this.$forceUpdate();
-          }
-        });
-      // .then(() => { this.questionIndex = this.questions.length - 1; });
-    }
+    this.initAssessment();
   },
 };
 </script>
