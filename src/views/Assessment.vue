@@ -132,7 +132,7 @@
             <v-card-actions class="justify-center">
               <v-btn
                 color="error"
-                @click="nextQuestion(); confirmDontKnowWord = false;"
+                @click="dialogConfirmDontKnowWord = false; question.correct = false; nextQuestion();"
               >
                 I don't know this word
               </v-btn>
@@ -184,11 +184,14 @@
           </p>
           <v-slider
             class="large-font"
+            color="blue"
+            track-color="blue-lighten-3"
+            :thumb-color="sliderClicked ? 'blue lighten-1' : 'red'"
             :error="question.familiarity === 0 && sliderClicked === false"
-            :rules="rules"
+            @change="question.familiarity > 0 ? question.correct = true : question.correct = false"
             @mousedown="sliderClicked=true; sliding=true"
             @mouseup="sliding=false"
-            :hint="sliderHints[question.familiarity]"
+            :hint="sliderClicked ? sliderHints[question.familiarity] : `${sliderHints[question.familiarity]} - Drag slider or click bar`"
             v-model="question.familiarity"
             step="1"
             min=0
@@ -309,15 +312,18 @@ export default {
       } else if (this.question.uuid !== null) {
         // there is a question - try to post it
         this.postQuestion().then((response) => response).then(() => {
+          Object.assign(this.question, this.dummyQuestion);
+          this.reveal = false;
           this.nextQuestion();
         }).catch((error) => {
           console.log('could not post question');
           console.log(error);
-          this.$forceUpdate();
+          this.assessing = false;
+          this.somethingsWrong = true;
         });
         // performed async with post call to avoid a screen flash
-        this.reveal = false;
-        Object.assign(this.question, this.dummyQuestion);
+        // this.reveal = false;
+        // Object.assign(this.question, this.dummyQuestion);
       } else {
         // There is no question, get a new one
         this.getQuestion().then((response) => {
@@ -327,27 +333,14 @@ export default {
       }
     },
     doReveal(doesKnow) {
-      this.question.correct = doesKnow;
+      this.question.recognize = doesKnow;
       if (!doesKnow) {
+        this.question.correct = doesKnow;
         this.question.familiarity = 0;
         this.nextQuestion();
       } else {
         this.questionsAnsweredCorrectly.push(this.question.uuid);
         this.reveal = true;
-      }
-    },
-    pushThroughOverlay(overlayName, action, arg, spend) {
-      if (overlayName in this.overlays && !this.overlays[overlayName].spent) {
-        this.currentOverlayKey = overlayName;
-        this.overlayHelper = true;
-        this.overlayAction = function overlayAction() {
-          action(arg);
-        };
-        if (spend) {
-          this.overlays[overlayName].spent = true;
-        }
-      } else {
-        action(arg);
       }
     },
     showThumb() {
@@ -478,14 +471,14 @@ export default {
             this.somethingsWrong = false;
           })
           .catch((error) => {
-            if (error.response.data.detail === 'Deck not found') {
-              console.log('deck not found');
-              this.resetDeck();
-            } else if (!error.status) {
+            if (!error.response) {
               // network error
               console.log('network error');
               this.somethingsWrong = true;
               console.log(error);
+            } else if (error.response.data.detail === 'Deck not found') {
+              console.log('deck not found');
+              this.resetDeck();
             }
           });
       // .then(() => { this.questionIndex = this.questions.length - 1; });
@@ -623,7 +616,7 @@ export default {
         vocab_uuid: null,
         vocab: {
           uuid: null,
-          word: null,
+          word: ' ',
           pos: null,
           note: null,
           lemma: {
