@@ -59,13 +59,13 @@
           max-width="500"
         >
           <v-card>
-            <v-card-title class='black--text text--darken-4'>You know this word if:</v-card-title>
+            <v-card-title class='black--text text--darken-4'><span>Click<span class="green--text darken-1">{{ ' YES '}}</span>if:</span></v-card-title>
             <v-card-text>
               <li class='text-subtitle-2 text--primary'>
-                <span class="green--text darken-1">You can translate it confidently</span>
+                You have mastered this word
               </li>
               <li class='text-subtitle-2 text--primary'>
-                <span class="green--text darken-1">You are not relying on it being a cognate</span>
+                You are not relying on it being a cognate
               </li>
             </v-card-text>
 
@@ -74,14 +74,14 @@
             <v-card-actions class="justify-center">
               <v-btn
                 color="success"
-                @click="doReveal(true); dialogKnowWord = false;"
+                @click="shownKnowWordDialog = true; dialogKnowWord = false; skipReveal(true);"
               >
                 Makes sense
               </v-btn>
               <v-btn
                 color="error"
                 text
-                 @click="dialogKnowWord = false"
+                 @click="shownKnowWordDialog = true; dialogKnowWord = false"
               >
                 Go Back
               </v-btn>
@@ -89,18 +89,21 @@
           </v-card>
         </v-dialog>
         <v-dialog
-          id="knowWordCheck"
-          v-model="dialogDontKnowWord"
+          id="maybeKnowWordCheck"
+          v-model="dialogMaybeKnowWord"
           max-width="500"
         >
           <v-card>
-            <v-card-title class='black--text text--darken-4'>You don't know this word if:</v-card-title>
+            <v-card-title class='black--text text--darken-4'><span>Click<span class="warning--text darken-1">{{ ' MAYBE '}}</span>if:</span></v-card-title>
             <v-card-text>
               <li class='text-subtitle-2 text--primary'>
-                <span class="green--text darken-1">You can translate it confidently</span>
+                You are unsure if you know it
               </li>
               <li class='text-subtitle-2 text--primary'>
-                <span class="green--text darken-1">You are not relying on it being a cognate</span>
+                You want to check the definition
+              </li>
+              <li class='text-subtitle-2 text--primary'>
+                You know it, but have not mastered it
               </li>
             </v-card-text>
 
@@ -109,14 +112,49 @@
             <v-card-actions class="justify-center">
               <v-btn
                 color="success"
-                @click="doReveal(false); dialogDontKnowWord = false;"
+                @click="shownMaybeKnowWordDialog = true; dialogMaybeKnowWord = false; doReveal(true);"
               >
                 Makes sense
               </v-btn>
               <v-btn
                 color="error"
                 text
-                 @click="dialogKnowWord = false"
+                 @click="shownMaybeKnowWordDialog = true; dialogMaybeKnowWord = false"
+              >
+                Go Back
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <v-dialog
+          id="dontKnowWordCheck"
+          v-model="dialogDontKnowWord"
+          max-width="500"
+        >
+          <v-card>
+            <v-card-title class='black--text text--darken-4'><span>Click<span class="error--text darken-1">{{ ' NO '}}</span>if:</span></v-card-title>
+            <v-card-text>
+              <li class='text-subtitle-2 text--primary'>
+                <span >You do not know the word</span>
+              </li>
+              <li class='text-subtitle-2 text--primary'>
+                <span>You can only guess or infer it's meaning</span>
+              </li>
+            </v-card-text>
+
+            <v-divider></v-divider>
+
+            <v-card-actions class="justify-center">
+              <v-btn
+                color="success"
+                @click="shownDontKnowWordDialog = true; dialogDontKnowWord = false; doReveal(false);"
+              >
+                Makes sense
+              </v-btn>
+              <v-btn
+                color="error"
+                text
+                 @click="shownDontKnowWordDialog = true; dialogDontKnowWord = false"
               >
                 Go Back
               </v-btn>
@@ -153,15 +191,23 @@
             text
             outlined
             color='success'
-            @click="showKnowWordDialog ? dialogKnowWord = true : doReveal(true)"
+            @click="!shownKnowWordDialog ? dialogKnowWord = true : skipReveal(true)"
           >
             Yes
           </v-btn>
           <v-btn
             text
             outlined
+            color='warning'
+            @click="!shownMaybeKnowWordDialog ? dialogMaybeKnowWord = true : doReveal(true)"
+          >
+            Maybe
+          </v-btn>
+          <v-btn
+            text
+            outlined
             color='error'
-            @click="showDontKnowWordDialog ? dialogDontKnowWord = true : doReveal(false)"
+            @click="!shownDontKnowWordDialog ? dialogDontKnowWord = true : doReveal(false)"
           >
             No
           </v-btn>
@@ -237,28 +283,7 @@
     </v-row>
     </v-container>
       </v-card>
-      <v-card
-        class='quiz-card mx-auto'
-        max-width="500"
-        justify="center"
-        v-if="doneAssessing"
-      >
-        <!-- <v-card-title class='justify-center text-h4'>You finished!</v-card-title> -->
-        <v-card-text class=text-center>
-          <v-card-title class='justify-center text-h6'>
-            <span>You have an estimated vocabulary of:<br> <span class="font-weight-bold"> {{this.assessment.prediction.total_predicted_correct}} words</span></span>
-          </v-card-title>
-          <!-- <v-progress-circular
-            :rotate="180"
-            :size="100"
-            :width="15"
-            :value="(assessment.prediction || .65)*100"
-            color="pink"
-          >
-            {{(assessment.prediction || .65)*100}}%
-          </v-progress-circular> -->
-        </v-card-text>
-      </v-card>
+    <deck-dialog v-if="doneAssessing && dialogDeckAssessment" v-model="dialogDeckAssessment" :deckUUID="assessment.deck_uuid"/>
     <pre v-if="isSuperUser">{{ assessment }}</pre>
     </div>
   <progress-dialog 
@@ -278,10 +303,11 @@ import { v4 as uuidv4 } from 'uuid';
 import axios from 'axios';
 import HelpDialog from '../components/HelpDialog.vue';
 import ProgressDialog from '../components/ProgressDialog.vue';
+import DeckDialog from '../components/DeckDialog.vue';
 
 export default {
   name: 'Assessment',
-  components: { HelpDialog, ProgressDialog },
+  components: { HelpDialog, ProgressDialog, DeckDialog },
   methods: {
     handleContinueAssessment() {
       this.cardConfirmContinueAssessment = false;
@@ -305,6 +331,7 @@ export default {
           } else {
             this.assessing = false;
             this.doneAssessing = true;
+            this.dialogDeckAssessment = true;
           }
         });
       } else if (this.question.uuid !== null) {
@@ -329,6 +356,12 @@ export default {
         });
         this.reveal = false;
       }
+    },
+    skipReveal() {
+      this.question.recognize = true;
+      this.question.correct = true;
+      this.question.familiarity = 5;
+      this.nextQuestion();
     },
     doReveal(doesKnow) {
       this.question.recognize = doesKnow;
@@ -501,8 +534,13 @@ export default {
       cardConfirmContinueAssessment: false,
       somethingsWrong: false,
       doneAssessing: false,
+      dialogDeckAssessment: false,
       dialogHelp: false,
+      shownKnowWordDialog: false,
+      shownMaybeKnowWordDialog: false,
+      shownDontKnowWordDialog: false,
       dialogKnowWord: false,
+      dialogMaybeKnowWord: false,
       dialogDontKnowWord: false,
       dialogConfirmDontKnowWord: false,
       dialogProgress: false,
@@ -642,18 +680,12 @@ export default {
     };
   },
   computed: {
-    showKnowWordDialog() {
-      if (this.totalQuestionsAnsweredCorrectly > 0) {
-        return false;
-      }
-      return true;
-    },
-    showDontKnowWordDialog() {
-      if ((this.totalQuestionsAnswered - this.totalQuestionsAnsweredCorrectly) > 0) {
-        return false;
-      }
-      return true;
-    },
+    // showKnowMaybeWordDialog() {
+    //   if (this.totalQuestionsAnsweredCorrectly > 0) {
+    //     return false;
+    //   }
+    //   return true;
+    // },
     totalQuestionsAnswered() {
       console.log('computing totalQuestionsAnswered');
       let total = 0;

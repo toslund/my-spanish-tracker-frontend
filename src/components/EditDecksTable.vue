@@ -31,7 +31,7 @@
           </v-icon>
         </template>
         <template v-slot:item.uuid="{ item }">
-          <span>{{ `${item.uuid.split('-')[0]}...` }}</span>
+          <span>{{ item.uuid ? `${item.uuid.split('-')[0]}...` : null }}</span>
         </template>
          <template v-slot:item.questions="{ item }">
           <span>{{ resultFromQuestions(item.questions) }}</span>
