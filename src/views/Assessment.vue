@@ -183,14 +183,12 @@
             How well do you know this word?
           </p>
           <v-slider
-            class="large-font"
+            class="large-font px-3"
             color="blue"
             track-color="blue-lighten-3"
-            :thumb-color="sliderClicked ? 'blue lighten-1' : 'red'"
+            :thumb-color="'blue lighten-1'"
             :error="question.familiarity === 0 && sliderClicked === false"
             @change="question.familiarity > 0 ? question.correct = true : question.correct = false"
-            @mousedown="sliderClicked=true; sliding=true"
-            @mouseup="sliding=false"
             :hint="sliderClicked ? sliderHints[question.familiarity] : `${sliderHints[question.familiarity]} - Drag slider or click bar`"
             v-model="question.familiarity"
             step="1"
@@ -296,12 +294,12 @@ export default {
     },
     nextQuestion() {
       console.log('NEXT QUESTION');
-      if (this.assessment.questions.length === 0 && this.assessment.prediction !== null) {
+      if (this.assessment.questions_queue.length === 0 && this.assessment.prediction !== null) {
         // the assessment is finished
         console.log('ASSESSMENT FINISHED');
         this.getDeckAssessment().then((response) => {
           this.assessment = response.data;
-          if (this.assessment.questions.length > 0) {
+          if (this.assessment.questions_queue.length > 0) {
             // the assessment is acutally not finished
             this.nextQuestion(); 
           } else {
@@ -379,7 +377,7 @@ export default {
       console.log(`${this.deckEndpoint}/${this.savedDeckUUID}`);
       // const url = new URL(this.deckEndpoint);
       const response = await axios.get(`${this.deckEndpoint}/${this.savedDeckUUID}`);
-      console.log(`length of questions rom fetched deck: ${response.data.questions.length}`);
+      console.log(`length of questions rom fetched deck: ${response.data.questions_queue.length}`);
       console.log(response);
       return response;
     },
@@ -400,7 +398,7 @@ export default {
     },
     async getQuestion() {
       console.log('getting question');
-      const vocabUUID = this.assessment.questions.pop();
+      const vocabUUID = this.assessment.questions_queue.pop();
       this.questionsAnswered.push(vocabUUID);
       console.log(`${this.deckEndpoint}/${this.savedDeckUUID}/question`);
       // const url = new URL(this.deckEndpoint);
@@ -519,6 +517,7 @@ export default {
           },
         ],
         questions: [],
+        questions_queue: [],
         prediction: null,
       },
       overlays: {
@@ -675,7 +674,7 @@ export default {
     },
     totalQuestionsToGo() {
       console.log('computnig totalQuestionsToGo');
-      return this.assessment.questions.length;
+      return this.assessment.questions_queue.length;
     },
     isSuperUser() {
       return this.$store.getters.isSuperUser;

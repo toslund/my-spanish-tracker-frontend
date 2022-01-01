@@ -68,7 +68,7 @@ export default {
   },
   mounted() {
     if (this.isLoggedIn) {
-      const headers = this.isLoggedIn ? { Authorization: `Bearer ${this.authToken}` } : null;
+      const headers = this.isLoggedIn ? { Authorization: `Bearer ${this.$store.getters.authToken}` } : null;
       const url = new URL(`${this.apiEndpoint}/users/me`);
       const options = {
         method: 'GET',

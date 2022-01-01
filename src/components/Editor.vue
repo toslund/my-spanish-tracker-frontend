@@ -13,7 +13,7 @@
         {{tab}}
       </v-tab>
       <v-tabs-items v-model="tab">
-        <v-tab-item key="lemmas">
+      <v-tab-item key="lemmas">
         <edit-lemmas-table></edit-lemmas-table>
       </v-tab-item>
       <v-tab-item key="vocab">
@@ -79,6 +79,9 @@
       <v-tab-item key="users">
         <edit-users-table></edit-users-table>
       </v-tab-item>
+      <v-tab-item key="decks">
+        <edit-decks-table></edit-decks-table>
+      </v-tab-item>
       </v-tabs-items>
     </v-tabs>
   </v-container>
@@ -90,6 +93,7 @@ import VocabDialog from './VocabDialog.vue';
 import LemmaDialog from './LemmaDialog.vue';
 import DefinitionDialog from './DefinitionDialog.vue';
 import EditUsersTable from './EditUsersTable.vue';
+import EditDecksTable from './EditDecksTable.vue';
 import EditLemmasTable from './EditLemmasTable.vue';
 
 export default {
@@ -108,6 +112,7 @@ export default {
     DefinitionDialog,
     EditUsersTable,
     EditLemmasTable,
+    EditDecksTable,
   },
   methods: {
     filterBeginsWith(value, search) {
@@ -199,7 +204,7 @@ export default {
   data() {
     return {
       tab: 'vocab',
-      tabs: ['lemmas', 'vocab', 'users'],
+      tabs: ['lemmas', 'vocab', 'users', 'decks'],
       search: '',
       exactSearch: false,
       options: { itemsPerPage: 0, page: 1 },
