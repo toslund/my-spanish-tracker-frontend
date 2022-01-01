@@ -5,7 +5,7 @@
     hide-overlay
     transition="dialog-bottom-transition"
   >
-    <v-dialog v-if="isSuperuser" v-model="dialogDelete" max-width="500px">
+    <v-dialog v-if="isSuperUser" v-model="dialogDelete" max-width="500px">
       <v-card>
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
         <v-card-actions>
@@ -101,7 +101,7 @@
       <v-divider></v-divider>
       <v-container>
         <v-row justify="center">
-          <v-col justify="center">
+          <v-col justify="center" class="flex-grow-0">
           <h1 class="text-h5">Vocabulary</h1>
           <v-simple-table height="300px" dense>
             <template v-slot:default>
