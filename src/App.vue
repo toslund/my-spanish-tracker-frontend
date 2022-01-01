@@ -81,9 +81,15 @@ export default {
         console.log('got /me');
         console.log(response.data);
       }).catch((error) => {
-        console.log('error in getting /me');
-        console.log(error);
-        this.logOut();
+        if (!error.status) {
+          // network error
+          console.log('network error');
+          console.log(error);
+        } else {
+          console.log('error in getting /me');
+          console.log(error);
+          this.logOut();
+        }
       });
     }
   },
