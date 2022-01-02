@@ -59,7 +59,12 @@ const store = new Vuex.Store({
       console.log(parsedDeck);
       return parsedDeck.deck_uuid;
     },
-    authToken: (state) => state.authPayload.access_token,
+    authToken: (state) => {
+      if (state.authPayload !== null) {
+        return state.authPayload.access_token;
+      }
+      return null;
+    },
     parsedAuth: (state, getters) => {
       if (getters.authToken === null) { return null; }
       const encodedAuth = getters.authToken.split('.')[1];
