@@ -14,7 +14,7 @@
           transition="scale-transition"
           width="40"
         />
-        <v-toolbar-title @click="$router.push('/')" >My Spanish Tracker</v-toolbar-title>
+        <v-toolbar-title @click="$router.push('/')" :style="{ cursor: 'pointer'}">My Spanish Tracker</v-toolbar-title>
       </div>
       <v-spacer></v-spacer>
       <v-btn v-if="isSuperUser" to="/crud">DATA</v-btn>
