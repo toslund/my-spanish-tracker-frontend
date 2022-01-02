@@ -64,7 +64,9 @@ export default {
   methods: {
     logOut() {
       this.$store.commit('logOut');
-      this.$router.push('/');
+      if (this.$route.name === 'Home') {
+        this.$router.go();
+      } else { this.$router.push('/'); }
     },
   },
   mounted() {
