@@ -1,6 +1,17 @@
 <template>
   <v-container v-if="isSuperUser">
     <deck-dialog v-if="dialogDeck" v-model="dialogDeck" :deckUUID="editDeckUUID" @delete="handleDelete($event)"/>
+      <v-dialog v-if="isSuperUser" v-model="dialogDelete" max-width="500px">
+        <v-card>
+          <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" text @click="dialogDelete = false">Cancel</v-btn>
+            <v-btn color="blue darken-1" text @click="deleteItemConfirm()">OK</v-btn>
+            <v-spacer></v-spacer>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
         <v-data-table
           :loading="loading"
           loading-text="Loading... Please wait"
@@ -28,6 +39,13 @@
             @click="editDeck(item)"
           >
             mdi-pencil
+          </v-icon>
+          <v-icon
+            small
+            class="mr-2"
+            @click="editDeckUUID=item.uuid; dialogDelete = true;"
+          >
+            mdi-delete
           </v-icon>
         </template>
         <template v-slot:item.uuid="{ item }">
@@ -72,6 +90,37 @@ export default {
       }
       return `${correct}/${total}`;
     },
+    editDeck(item) {
+      this.editDeckUUID = item.uuid;
+      // this.editingDeck = deck;
+      this.dialogDeck = true;
+    },
+    deleteItemConfirm() {
+      console.log('deleting item');
+      console.log(this.editDeckUUID);
+      this.loading = true;
+      this.deleteDeck(this.editDeckUUID).then((response) => {
+        console.log(response);
+        this.loading = false;
+        this.handleDelete(response.data.uuid);
+        this.dialogDelete = false;
+      });
+    },
+    async deleteDeck(uuid) {
+      console.log('requesting to delete Deck');
+      // url.searchParams.set('all', true);
+      // url.searchParams.set('limit', 100);
+      const url = new URL(`${this.apiEndpoint}/decks/${uuid}`);
+      const options = {
+        method: 'DELETE',
+        headers: { Authorization: `Bearer ${this.authToken}` },
+        url,
+      };
+      const response = await axios(
+        options,
+      );
+      return response;
+    },
     handleDelete(uuid) {
       console.log('handle delete in parent');
       console.log(uuid);
@@ -87,14 +136,6 @@ export default {
       if (deleteIndex !== null) {
         this.decks.splice(deleteIndex, 1);
       }
-    },
-    editDeck(item) {
-      this.editDeckUUID = item.uuid;
-      // this.editingDeck = deck;
-      this.dialogDeck = true;
-    },
-    deleteDeck(item) {
-      console.log(item);
     },
     async getDecks() {
       console.log('requesting decks');
@@ -130,6 +171,9 @@ export default {
       search: '',
       dialogDeck: false,
       deckEndpoint: `${process.env.VUE_APP_API_URL}/decks`,
+      apiEndpoint: process.env.VUE_APP_API_URL,
+      dialogDelete: null,
+      editDeckUUID: null,
       decks: [
         {
           uuid: null,
