@@ -94,6 +94,7 @@ export default {
       this.getAuthToken(this.email, this.password)
         .then((response) => {
           console.log(response);
+          this.$store.commit('removeSavedDeck');
           this.$store.commit('setAuthToken', response.data);
           this.showDialog = false;
         })
