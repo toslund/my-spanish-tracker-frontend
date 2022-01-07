@@ -19,7 +19,6 @@
         </h1>
         <v-container  style="max-width: 700px;">
         <p class="subheading font-weight-regular">
-          Measuring fluency in a second language is difficult.
           MySpanishTracker is based on the premise that one aspect of fluency,
           vocabulary, should be measurable and can be used as a long term metric
           of proficiency and progress.
