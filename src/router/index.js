@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import FrequencyDictionary from '../views/FrequencyDictionary.vue';
 import Assessment from '../views/Assessment.vue';
 import Crud from '../views/Crud.vue';
+import ConfirmEmail from '../views/ConfirmEmail.vue';
 
 Vue.use(VueRouter);
 
@@ -36,9 +37,15 @@ const routes = [
     name: 'Data Editor',
     component: Crud,
   },
+  {
+    path: '/confirm-email',
+    name: 'Confirm Email',
+    component: ConfirmEmail,
+  },
 ];
 
 const router = new VueRouter({
+  mode: 'history',
   routes,
 });
 
