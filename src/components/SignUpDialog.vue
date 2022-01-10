@@ -63,6 +63,17 @@
               Welcome!
             </h3>
         </v-card-title>
+        <v-card-text class="centered-text black--text">
+          Please check your email to confirm your account.
+        </v-card-text>
+        <v-card-actions class="justify-center">
+          <v-btn color="success" to="/assessment" @click="closeDialog" :large="$vuetify.breakpoint.smAndUp">
+            Take Assessment
+          </v-btn>
+          <v-btn @click="closeDialog" :large="$vuetify.breakpoint.smAndUp">
+            Close
+          </v-btn>
+        </v-card-actions>
       </v-card>
   </v-dialog>
 </template>
@@ -99,7 +110,7 @@ export default {
           this.$store.commit('removeSavedDeck');
           this.$store.commit('setAuthToken', response.data);
           this.$emit('success', true);
-          this.closeDialog();
+          this.finished = true;
         })
         .catch((error) => {
           console.log(error);
