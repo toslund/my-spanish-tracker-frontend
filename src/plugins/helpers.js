@@ -19,6 +19,19 @@ Vue.mixin({
     },
   },
   methods: {
+    formatError(errorBody) {
+      if (!('detail' in errorBody)) {
+        return 'An unknown error occured';
+      }
+      if (typeof errorBody.detail === 'object') {
+        try {
+          return errorBody.detail[0].msg;
+        } catch (error) {
+          return 'An unknown error occured';
+        }
+      }
+      return errorBody.detail;
+    },
     capitalizeFirstLetter: (str) => str.charAt(0).toUpperCase() + str.slice(1),
     sampleFunction() {
       alert('Global Functions');

@@ -95,7 +95,7 @@ export default {
     },
     submit() {
       this.emailRules.push((v) => !!v || 'E-mail is required');
-      this.emailRules.push((v) => /.+@.+/.test(v) || 'E-mail must be valid');
+      this.emailRules.push((v) => /.+@.+\..+/.test(v) || 'E-mail must be valid');
       if (this.$refs.form.validate()) {
         this.createUser();
       } else {
@@ -115,7 +115,7 @@ export default {
         .catch((error) => {
           console.log(error);
           console.log(error.response);
-          this.error = error.response.data.detail;
+          this.error = this.formatError(error.response.data);
         });
     },
   },
