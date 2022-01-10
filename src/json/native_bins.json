@@ -1,0 +1,278 @@
+[
+    {
+        "number_in_bin": 1022,
+        "bottom_rank": 1,
+        "top_rank": 1000,
+        "correct": [
+            "30a8b23a-6812-462f-a2de-b4494e9e0965",
+            "c483d316-c504-4071-98fa-6e4764727b76",
+            "bdfd2057-36e4-411f-9d2c-396635d69aaf",
+            "baebb2d7-ce86-45a2-8d3d-266c94d5d3da",
+            "b64069cc-473c-4478-9141-5236e461d4c7",
+            "83d85a09-b2bc-4fce-b7ac-1f14028d474e",
+            "889d11d9-3013-4523-8e8c-f1387f2d4d27",
+            "c65d5ba2-3f1d-4d43-9140-4dd75f1eb882",
+            "7bd3d366-2cfe-453f-a484-04d21540ae2d",
+            "d3d6098f-7db3-49b2-b4b5-0508cd7cb436"
+        ],
+        "total": [
+            "30a8b23a-6812-462f-a2de-b4494e9e0965",
+            "c483d316-c504-4071-98fa-6e4764727b76",
+            "bdfd2057-36e4-411f-9d2c-396635d69aaf",
+            "baebb2d7-ce86-45a2-8d3d-266c94d5d3da",
+            "b64069cc-473c-4478-9141-5236e461d4c7",
+            "83d85a09-b2bc-4fce-b7ac-1f14028d474e",
+            "889d11d9-3013-4523-8e8c-f1387f2d4d27",
+            "c65d5ba2-3f1d-4d43-9140-4dd75f1eb882",
+            "7bd3d366-2cfe-453f-a484-04d21540ae2d",
+            "d3d6098f-7db3-49b2-b4b5-0508cd7cb436"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1017,
+        "bottom_rank": 1001,
+        "top_rank": 2000,
+        "correct": [
+            "88e172b9-acdf-4959-9c1c-4246f09bfbfc",
+            "b7ddfe70-970d-4c39-8d4d-a0ded9f81300",
+            "217cf44c-f98a-4929-9566-0709eb729ba5",
+            "9ca6d5cc-ada0-4df8-ba12-24bf35757015",
+            "ebae6717-12f0-487c-85ab-25eb897ee8a5",
+            "8b3c6746-114f-4dd6-88c5-ed61d1e5327a",
+            "31f0ed89-c083-48a0-9c6e-877dd90b66a6",
+            "688f14d4-2f48-4eff-895f-f7dae9b72369",
+            "643af621-3889-4501-a48f-5ae725202eb4",
+            "327de72c-e344-4935-af22-4f22e07661e5"
+        ],
+        "total": [
+            "88e172b9-acdf-4959-9c1c-4246f09bfbfc",
+            "b7ddfe70-970d-4c39-8d4d-a0ded9f81300",
+            "217cf44c-f98a-4929-9566-0709eb729ba5",
+            "9ca6d5cc-ada0-4df8-ba12-24bf35757015",
+            "ebae6717-12f0-487c-85ab-25eb897ee8a5",
+            "8b3c6746-114f-4dd6-88c5-ed61d1e5327a",
+            "31f0ed89-c083-48a0-9c6e-877dd90b66a6",
+            "688f14d4-2f48-4eff-895f-f7dae9b72369",
+            "643af621-3889-4501-a48f-5ae725202eb4",
+            "327de72c-e344-4935-af22-4f22e07661e5"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1025,
+        "bottom_rank": 2001,
+        "top_rank": 3000,
+        "correct": [
+            "6f8f6f5a-e3c2-4394-9e55-4dac1696f70e",
+            "76c3e4c3-0e4b-4ddb-801c-4d64c8ca656d",
+            "fda6c334-fb39-4de9-b8d8-10adde3db67d",
+            "c97e8004-afb7-4cce-8c7c-2327649b4bfa",
+            "80a69ca5-b206-4aaf-a75c-21f111fd590f",
+            "a058c9b0-6867-4d30-b698-6d05b2ef99d3",
+            "5d90fc52-e55b-4960-8f42-9505b3327f7c",
+            "6dab052b-aac4-42a3-87a7-c71a1a4f3941",
+            "fa2713e4-93f8-447d-ae4c-a6610650d82e",
+            "57e562cd-868e-429f-937c-c876c9084169"
+        ],
+        "total": [
+            "6f8f6f5a-e3c2-4394-9e55-4dac1696f70e",
+            "76c3e4c3-0e4b-4ddb-801c-4d64c8ca656d",
+            "fda6c334-fb39-4de9-b8d8-10adde3db67d",
+            "c97e8004-afb7-4cce-8c7c-2327649b4bfa",
+            "80a69ca5-b206-4aaf-a75c-21f111fd590f",
+            "a058c9b0-6867-4d30-b698-6d05b2ef99d3",
+            "5d90fc52-e55b-4960-8f42-9505b3327f7c",
+            "6dab052b-aac4-42a3-87a7-c71a1a4f3941",
+            "fa2713e4-93f8-447d-ae4c-a6610650d82e",
+            "57e562cd-868e-429f-937c-c876c9084169"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1048,
+        "bottom_rank": 3001,
+        "top_rank": 4000,
+        "correct": [
+            "a53e067a-60f2-4958-90c9-c71c8f005405",
+            "ada7c0b3-16d5-4f2b-8d04-1201fc00e9e6",
+            "018ac260-b623-44f9-9bf5-47e8eeed61a4",
+            "a9ef0aa5-603b-4560-9aff-7f566d4cc6be",
+            "8adadd1d-71fe-45f1-81c2-a587675a17fd",
+            "a37eba18-f022-451a-a543-1b86845542a1",
+            "5f1cf291-8de3-4f57-b8f6-ec9f9764f1bd",
+            "406f6b73-fe26-4e4c-a926-8911a76d2ae5",
+            "9a762311-cf20-4cbe-8e33-df488f5fd977",
+            "35b1cc0d-4557-490d-8e71-0b91abbbe86b"
+        ],
+        "total": [
+            "a53e067a-60f2-4958-90c9-c71c8f005405",
+            "ada7c0b3-16d5-4f2b-8d04-1201fc00e9e6",
+            "018ac260-b623-44f9-9bf5-47e8eeed61a4",
+            "a9ef0aa5-603b-4560-9aff-7f566d4cc6be",
+            "8adadd1d-71fe-45f1-81c2-a587675a17fd",
+            "a37eba18-f022-451a-a543-1b86845542a1",
+            "5f1cf291-8de3-4f57-b8f6-ec9f9764f1bd",
+            "406f6b73-fe26-4e4c-a926-8911a76d2ae5",
+            "9a762311-cf20-4cbe-8e33-df488f5fd977",
+            "35b1cc0d-4557-490d-8e71-0b91abbbe86b"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1071,
+        "bottom_rank": 4001,
+        "top_rank": 5000,
+        "correct": [
+            "65304b64-8db8-4a5c-b861-e83098518921",
+            "60c879b5-5777-48c9-a68a-f46238d5d495",
+            "656cd6d4-40e2-41d0-920f-575aba7f5556",
+            "55496579-8e39-43db-a872-12d1bb96825b",
+            "cffd8e2d-95fc-432b-8dfe-593c83ef7ff0",
+            "fae6e572-3f6d-4322-a5de-f46aff9251e5",
+            "8d24b9da-ffc2-40bb-8487-f71254f61a71",
+            "7a28fadb-4bf8-4ca8-9939-a2b3fded8b80",
+            "65893d0c-cbf7-4d22-84da-dff3c2d74716",
+            "0b02d4d7-873b-46ac-8637-160ac3042bb8"
+        ],
+        "total": [
+            "65304b64-8db8-4a5c-b861-e83098518921",
+            "60c879b5-5777-48c9-a68a-f46238d5d495",
+            "656cd6d4-40e2-41d0-920f-575aba7f5556",
+            "55496579-8e39-43db-a872-12d1bb96825b",
+            "cffd8e2d-95fc-432b-8dfe-593c83ef7ff0",
+            "fae6e572-3f6d-4322-a5de-f46aff9251e5",
+            "8d24b9da-ffc2-40bb-8487-f71254f61a71",
+            "7a28fadb-4bf8-4ca8-9939-a2b3fded8b80",
+            "65893d0c-cbf7-4d22-84da-dff3c2d74716",
+            "0b02d4d7-873b-46ac-8637-160ac3042bb8"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1100,
+        "bottom_rank": 5001,
+        "top_rank": 6000,
+        "correct": [
+            "396e29b3-718e-4112-b494-3e41a393b38d",
+            "17a3f0d6-1e41-4c01-803d-140246d958a3",
+            "fe907ed6-1047-4711-9e6d-ff63af186f5d",
+            "e63acaf9-9b1c-415b-a9b1-8af1dafe3f2e",
+            "fd8fdd96-1594-42a5-8179-97735995327f",
+            "08f4fd13-f315-4e3d-a481-6e627f9b167e",
+            "994d7958-feea-40d0-aefd-ce2b5da7c43f",
+            "b45f10b2-bdcb-415a-a410-9e865766ed7d",
+            "cddadca7-4c20-4be6-afbb-1621dd02c543",
+            "8a8b574b-fe27-4d33-90c2-ab21a827c8a7"
+        ],
+        "total": [
+            "396e29b3-718e-4112-b494-3e41a393b38d",
+            "17a3f0d6-1e41-4c01-803d-140246d958a3",
+            "fe907ed6-1047-4711-9e6d-ff63af186f5d",
+            "e63acaf9-9b1c-415b-a9b1-8af1dafe3f2e",
+            "fd8fdd96-1594-42a5-8179-97735995327f",
+            "08f4fd13-f315-4e3d-a481-6e627f9b167e",
+            "994d7958-feea-40d0-aefd-ce2b5da7c43f",
+            "b45f10b2-bdcb-415a-a410-9e865766ed7d",
+            "cddadca7-4c20-4be6-afbb-1621dd02c543",
+            "8a8b574b-fe27-4d33-90c2-ab21a827c8a7"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1168,
+        "bottom_rank": 6001,
+        "top_rank": 7000,
+        "correct": [
+            "8e55b9cd-ec92-4b9e-be53-a1ebd698f789",
+            "dbd68fb7-7837-4e8f-9c5c-063f8abe8751",
+            "0023c41c-3b92-49fe-9e54-181b6a5574d5",
+            "a727827c-93eb-4138-849e-250d3a9ac6d4",
+            "287b0d75-f998-44f6-8d98-6efda3163dcf",
+            "47087122-221f-4474-a75c-fd5e12c36a9a",
+            "c36e45e1-7d85-4dcf-9415-4a41e769a2ab",
+            "31dbd21c-3e7e-47c6-a3f2-e170010b4082",
+            "76982937-37e0-4b5b-894d-5fab9e5332f9",
+            "f11ed35e-df81-43e0-a697-de89b65ce865"
+        ],
+        "total": [
+            "8e55b9cd-ec92-4b9e-be53-a1ebd698f789",
+            "dbd68fb7-7837-4e8f-9c5c-063f8abe8751",
+            "0023c41c-3b92-49fe-9e54-181b6a5574d5",
+            "a727827c-93eb-4138-849e-250d3a9ac6d4",
+            "287b0d75-f998-44f6-8d98-6efda3163dcf",
+            "47087122-221f-4474-a75c-fd5e12c36a9a",
+            "c36e45e1-7d85-4dcf-9415-4a41e769a2ab",
+            "31dbd21c-3e7e-47c6-a3f2-e170010b4082",
+            "76982937-37e0-4b5b-894d-5fab9e5332f9",
+            "f11ed35e-df81-43e0-a697-de89b65ce865"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1278,
+        "bottom_rank": 7001,
+        "top_rank": 8000,
+        "correct": [
+            "7237a572-5097-4d6a-b8c0-9565594c204e",
+            "57485039-8c8a-43aa-aafa-21c861b1129d",
+            "9271496e-5639-4ca4-a319-5fff6a92e7a8",
+            "2f4d465a-fc32-4333-98e7-88c745686989",
+            "e589810a-96ba-444c-aaf9-576acc48dde3",
+            "627ff4ca-5f4f-422b-999f-762e46fdc69d",
+            "32ac59bf-b12b-4f9c-a070-bb81a63748a6",
+            "c41103dc-7c73-4bbb-a134-aaeda02654df",
+            "311b62da-0166-470d-a112-805549c8f6f4",
+            "a8e16e77-4090-4a77-a04a-39f4665746e6"
+        ],
+        "total": [
+            "7237a572-5097-4d6a-b8c0-9565594c204e",
+            "57485039-8c8a-43aa-aafa-21c861b1129d",
+            "9271496e-5639-4ca4-a319-5fff6a92e7a8",
+            "2f4d465a-fc32-4333-98e7-88c745686989",
+            "e589810a-96ba-444c-aaf9-576acc48dde3",
+            "627ff4ca-5f4f-422b-999f-762e46fdc69d",
+            "32ac59bf-b12b-4f9c-a070-bb81a63748a6",
+            "c41103dc-7c73-4bbb-a134-aaeda02654df",
+            "311b62da-0166-470d-a112-805549c8f6f4",
+            "a8e16e77-4090-4a77-a04a-39f4665746e6"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1332,
+        "bottom_rank": 8001,
+        "top_rank": 8949,
+        "correct": [
+            "8a752d9c-1dd1-480f-a35a-36b1f477f4f5",
+            "d9ec1912-0766-48d3-8924-818335088887",
+            "b6c15443-541d-493c-8bcd-2417e32323f2",
+            "a8772a9d-ebeb-402b-b724-ead76840e61c",
+            "85dc50d9-c15f-4a7b-a403-b73e83e09a4c",
+            "b9d957a2-fa4e-4b8c-85e8-d05d5211594b",
+            "f0eb51a6-76de-4bd6-a0e5-020bb4b17475",
+            "ec24fac3-2c3a-4c9c-ab51-fa9969bc6a67"
+        ],
+        "total": [
+            "8a752d9c-1dd1-480f-a35a-36b1f477f4f5",
+            "d9ec1912-0766-48d3-8924-818335088887",
+            "b6c15443-541d-493c-8bcd-2417e32323f2",
+            "a8772a9d-ebeb-402b-b724-ead76840e61c",
+            "85dc50d9-c15f-4a7b-a403-b73e83e09a4c",
+            "b9d957a2-fa4e-4b8c-85e8-d05d5211594b",
+            "7be965cb-5622-49a9-a01b-d98b91dc84a9",
+            "f0eb51a6-76de-4bd6-a0e5-020bb4b17475",
+            "ec24fac3-2c3a-4c9c-ab51-fa9969bc6a67"
+        ],
+        "choose": [],
+        "sample_size": 9
+    }
+]

@@ -3,11 +3,11 @@
     max-width="500"
     :value="value" @input="$emit('input', $event)"
   >
-    <v-card elevation="4" light tag="section">
+    <v-card elevation="4" light tag="section" v-if="!finished">
         <v-card-title>
           <v-layout align-center justify-space-between>
             <h3 class="headline">
-              Log In
+              Sign Up
             </h3>
             <v-flex>
               <v-img alt="Spanish Tracker" class="ml-3" contain height="48px" position="center right" src="@/assets/logo.png"></v-img>
@@ -16,7 +16,7 @@
         </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
-          <p>Sign in with your email and password:</p>
+          <p>Sign up with an email and password:</p>
           <v-form
             ref="form"
             v-model="valid"
@@ -44,6 +44,7 @@
         >
           {{error}}
         </v-alert>
+        <p class="privacy-policy">Our <a href="/site-policy/privacy" target="_blank">privacy policy</a> is dead simple. Zero Google.</p>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions :class="{ 'pa-3': $vuetify.breakpoint.smAndUp }">
@@ -52,17 +53,23 @@
           </v-btn> -->
           <v-spacer></v-spacer>
           <v-btn color="success" :large="$vuetify.breakpoint.smAndUp" @click="submit">
-            <v-icon>mdi-lock</v-icon>
-            Login
+            Sign Up
           </v-btn>
         </v-card-actions>
+      </v-card>
+      <v-card v-if="finished === true">
+        <v-card-title class="justify-center">
+            <h3 class="headline">
+              Welcome!
+            </h3>
+        </v-card-title>
       </v-card>
   </v-dialog>
 </template>
 
 <script>
 export default {
-  name: 'LogInDialog',
+  name: 'SignUpDialog',
   props: { value: { type: Boolean } },
   watch: {
     // error(newVal) {
@@ -79,17 +86,19 @@ export default {
       this.emailRules.push((v) => !!v || 'E-mail is required');
       this.emailRules.push((v) => /.+@.+/.test(v) || 'E-mail must be valid');
       if (this.$refs.form.validate()) {
-        this.login();
+        this.createUser();
       } else {
         console.log('invalid form');
       }
     },
-    login() {
-      this.getAuthToken(this.email, this.password)
+    createUser() {
+      this.signUp(this.email, this.password, '')
+        .then(() => this.getAuthToken(this.email, this.password))
         .then((response) => {
           console.log(response);
           this.$store.commit('removeSavedDeck');
           this.$store.commit('setAuthToken', response.data);
+          this.$emit('success', true);
           this.closeDialog();
         })
         .catch((error) => {
@@ -100,6 +109,7 @@ export default {
     },
   },
   data: () => ({
+    finished: true,
     submitted: false,
     valid: true,
     error: null,
@@ -109,3 +119,9 @@ export default {
   }),
 };
 </script>
+
+<style scoped>
+.privacy-policy{
+  padding: 1em;
+}
+</style>

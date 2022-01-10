@@ -2,9 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import FrequencyDictionary from '../views/FrequencyDictionary.vue';
-import Assessment from '../views/Assessment.vue';
+import AssessmentView from '../views/AssessmentView.vue';
 import Crud from '../views/Crud.vue';
 import ConfirmEmail from '../views/ConfirmEmail.vue';
+import PrivacyPolicy from '../views/PrivacyPolicy.vue';
 
 Vue.use(VueRouter);
 
@@ -30,7 +31,7 @@ const routes = [
   {
     path: '/assessment',
     name: 'Vocab Assessment',
-    component: Assessment,
+    component: AssessmentView,
   },
   {
     path: '/crud',
@@ -41,6 +42,11 @@ const routes = [
     path: '/confirm-email',
     name: 'Confirm Email',
     component: ConfirmEmail,
+  },
+  {
+    path: '/site-policy/privacy',
+    name: 'Privacy Policy',
+    component: PrivacyPolicy,
   },
 ];
 

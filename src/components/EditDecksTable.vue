@@ -1,6 +1,6 @@
 <template>
   <v-container v-if="isSuperUser">
-    <deck-dialog v-if="dialogDeck" v-model="dialogDeck" :deckUUID="editDeckUUID" @delete="handleDelete($event)"/>
+    <deck-dialog v-if="dialogDeck" v-model="dialogDeck" :uuiddeck="editDeckUUID" @delete="handleDelete($event)"/>
       <v-dialog v-if="isSuperUser" v-model="dialogDelete" max-width="500px">
         <v-card>
           <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>

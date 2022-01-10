@@ -1,5 +1,5 @@
 <template>
-      <canvas id="line-chart"></canvas>
+    <canvas :id="canvasid"></canvas>
 </template>
 
 <script>
@@ -9,7 +9,8 @@ import Chart from 'chart.js/auto';
 export default {
   name: 'ProgressChart',
   props: {
-    predictions: Array,
+    bins: Array,
+    canvasid: String,
   },
   data() {
     return {
@@ -62,16 +63,27 @@ export default {
     };
   },
   computed: {
+    width() {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return 'width: 100%;' //220
+        case 'sm': return 'width: 400px;' //400
+        case 'md': return 'width: 500px;' //500
+        case 'lg': return 'width: 600px;' //600
+        case 'xl': return 'width: 800px;' //800
+      }
+    },
     predictionsData() {
       const data = [];
-      this.predictions.forEach((prediction) => { data.push(prediction.total_predicted_correct) });
+      this.bins.forEach((bin) => {
+        data.push((bin.correct.length/bin.total.length)*100)
+      });
       return data;
     },
     predictionsLabels() {
       const labels = [];
-      for (let i = 0; i < this.predictions.length; i += 1) {
-        labels.push(i + 1);
-      }
+      this.bins.forEach((bin) => {
+        labels.push(`${bin.bottom_rank}-${bin.top_rank}`)
+      });
       return labels;
     },
     // byDayChart() {
@@ -101,7 +113,7 @@ export default {
   watch: {
     // byDayChart: {
     //   handler() {
-    //     if (this.lineChart) {
+    //     if (this.barChart) {
     //       this.refreshChart();
     //     }
     //   },
@@ -110,31 +122,36 @@ export default {
   },
   methods: {
     renderChart() {
-      const lineChartCtx = document.getElementById('line-chart').getContext('2d');;
+      const barChartCtx = document.getElementById(this.canvasid).getContext('2d');;
       // eslint-disable-next-line
-      if (this.lineChart) { this.lineChart.destroy() }
-      this.lineChart = new Chart(lineChartCtx, {
-        type: 'line',
+      if (this.barChart) { this.barChart.destroy() }
+      this.barChart = new Chart(barChartCtx, {
+        type: 'bar',
         data: {
           labels: this.predictionsLabels,
           datasets: [{
-              label: 'Prediction through time',
+              label: 'Results by Ranked Words',
               data: this.predictionsData,
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
+                  'rgba(0, 215, 31, 0.2)',
+                  'rgba(84, 223, 20, 0.2)',
+                  'rgba(168, 232, 10, 0.2)',
+                  'rgba(253, 241, 0, 0.2)',
+                  'rgba(253, 192, 0, 0.2)',
+                  'rgba(253, 144, 0, 0.2)',
+                  'rgba(254, 96, 0, 0.2)',
+                  'rgba(254, 48, 0, 0.2)',
+                  'rgba(255, 0, 0, 0.2)',
               ],
               borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
+                  'rgba(200, 200, 200, 1)',
+                  'rgba(200, 200, 200, 1)',
+                  'rgba(200, 200, 200, 1)',
+                  'rgba(200, 200, 200, 1)',
+                  'rgba(200, 200, 200, 1)',
+                  'rgba(200, 200, 200, 1)',
+                  'rgba(200, 200, 200, 1)',
+                  'rgba(200, 200, 200, 1)',
               ],
               borderWidth: 1
           }]
@@ -146,13 +163,23 @@ export default {
           },
           title: {
             display: true,
-            text: 'Progression of Vocabulary Prediction',
+            text: 'Grouped Word Frequency by Percentage Correct',
           }
+        },
+        legend: {
+          display: false
         },
         scales: {
             y: {
                 beginAtZero: true,
-                max: 10000,
+                display: true,
+                text: 'Your Title',
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return value + '%';
+                    }
+                }
             }
         }
       },
@@ -162,17 +189,17 @@ export default {
       if( this.resetting ) { return }
       this.resetting = true
       console.log('start reset');
-      console.log(this.lineChart);
-      this.lineChart.reset();
+      console.log(this.barChart);
+      this.barChart.reset();
       this.resetting = false;
       console.log('finsish reset');
     },
     refreshChart() {
-      if (this.lineChart != null) {
-        console.log(this.lineChart.data.datasets);
-        this.lineChart.data.datasets.splice(0,this.lineChart.data.datasets.length);
-        this.byDayChart.datasets.forEach((dataset) => this.lineChart.data.datasets.push(JSON.parse(JSON.stringify(dataset))));
-        this.lineChart.update();
+      if (this.barChart != null) {
+        console.log(this.barChart.data.datasets);
+        this.barChart.data.datasets.splice(0,this.barChart.data.datasets.length);
+        this.byDayChart.datasets.forEach((dataset) => this.barChart.data.datasets.push(JSON.parse(JSON.stringify(dataset))));
+        this.barChart.update();
       }
     },
     handleMouseDown(event){
@@ -204,14 +231,15 @@ export default {
     },
   },
   created() {
-    this.lineChart = null;
+    this.barChart = null;
   },
   mounted() {
+    console.log(this.bins);
     this.renderChart();
   },
   beforeUnmount() {
-    if (this.lineChart) {
-      this.lineChart.destroy();
+    if (this.barChart) {
+      this.barChart.destroy();
     }
   },
 };
@@ -219,4 +247,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>

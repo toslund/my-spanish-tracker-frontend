@@ -1,0 +1,229 @@
+[
+    {
+        "number_in_bin": 1022,
+        "bottom_rank": 1,
+        "top_rank": 1000,
+        "correct": [
+            "15de90e9-47de-4375-b687-f2b78a215250",
+            "fbcc44bd-17ac-4bfc-a8da-e2983e9f6a8b",
+            "3412d0df-27ff-4011-b3d1-01aedebd8202",
+            "cf474d57-c850-401b-9582-eb046cd1cbfb",
+            "e622c5b4-8396-4a73-97bf-2940475ae750",
+            "cf4d27be-099e-462e-ac13-1b9ca8435e57",
+            "c6eea0ed-61f4-458f-abde-9cb489c361ad",
+            "73de7174-920e-4aba-ac00-732c52809217"
+        ],
+        "total": [
+            "15de90e9-47de-4375-b687-f2b78a215250",
+            "fbcc44bd-17ac-4bfc-a8da-e2983e9f6a8b",
+            "3412d0df-27ff-4011-b3d1-01aedebd8202",
+            "cf474d57-c850-401b-9582-eb046cd1cbfb",
+            "e622c5b4-8396-4a73-97bf-2940475ae750",
+            "ea17386e-bbac-447f-a88b-b38209f4ba2a",
+            "cf4d27be-099e-462e-ac13-1b9ca8435e57",
+            "c6eea0ed-61f4-458f-abde-9cb489c361ad",
+            "73de7174-920e-4aba-ac00-732c52809217",
+            "a03e0edc-1e7c-4fdd-830f-8db313708209"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1017,
+        "bottom_rank": 1001,
+        "top_rank": 2000,
+        "correct": [
+            "baa48dd8-f326-475f-a5e0-668b65243ef2",
+            "fef81b42-47a6-4aa7-a2bb-5b7fb50a7cc2",
+            "07c74974-7a1e-4d4a-87c0-d961b99e892e",
+            "f0f90b88-85ae-4a17-bacf-e5f67c58825d",
+            "ccda6fb3-6b62-4a8d-b2ed-bd94a271f9fc",
+            "1514d3f1-499f-48e0-baf7-7ffd7d32422f",
+            "6718b0cb-febd-45b4-b9bf-aadb933add68",
+            "81202138-d107-4fbc-ab08-0382e17e7a4a",
+            "792d370e-026d-4a23-b662-66ec9a9bff67",
+            "e6aff0e0-5ae5-443c-9450-c83e1200c03f"
+        ],
+        "total": [
+            "baa48dd8-f326-475f-a5e0-668b65243ef2",
+            "fef81b42-47a6-4aa7-a2bb-5b7fb50a7cc2",
+            "07c74974-7a1e-4d4a-87c0-d961b99e892e",
+            "f0f90b88-85ae-4a17-bacf-e5f67c58825d",
+            "ccda6fb3-6b62-4a8d-b2ed-bd94a271f9fc",
+            "1514d3f1-499f-48e0-baf7-7ffd7d32422f",
+            "6718b0cb-febd-45b4-b9bf-aadb933add68",
+            "81202138-d107-4fbc-ab08-0382e17e7a4a",
+            "792d370e-026d-4a23-b662-66ec9a9bff67",
+            "e6aff0e0-5ae5-443c-9450-c83e1200c03f"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1025,
+        "bottom_rank": 2001,
+        "top_rank": 3000,
+        "correct": [
+            "9412a352-00db-4c97-b1b3-eb4f5170d2de",
+            "85945fb9-2767-475f-b1c1-fe0a9b42194a",
+            "694d9612-4d8b-43f0-bbca-90f987413bab",
+            "92fe5e61-7601-46a3-b9db-a0c5566884c6"
+        ],
+        "total": [
+            "9412a352-00db-4c97-b1b3-eb4f5170d2de",
+            "85945fb9-2767-475f-b1c1-fe0a9b42194a",
+            "694d9612-4d8b-43f0-bbca-90f987413bab",
+            "6b4a37d3-45ee-49b5-95a0-d9b3276d214a",
+            "57fcb86c-2eb0-4fb8-ac67-d0e58b98d867",
+            "a9946b7d-5818-4b8e-bff7-ec787c142f57",
+            "8b7bd707-c9e2-48ef-886b-aa6657948263",
+            "f75b08e2-3eef-4d2c-9723-63e4e7c0bf58",
+            "d412eded-9a66-4570-bf6c-bb08f131e277",
+            "92fe5e61-7601-46a3-b9db-a0c5566884c6"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1048,
+        "bottom_rank": 3001,
+        "top_rank": 4000,
+        "correct": [
+            "40f96253-8073-4ae2-8fc6-35843a239c68",
+            "f0dbbea3-41d7-417b-9ee4-d8f09642a501",
+            "e42c7f10-a0e6-4d0e-ba7b-895403c67513"
+        ],
+        "total": [
+            "664b9047-0065-4d0b-901a-2c81655ede45",
+            "4fcefed6-bfbe-4409-b706-4c8e4ba3324d",
+            "98491871-6da3-452c-a4ae-04c64ff1dd8d",
+            "631ee562-ee88-4980-9d14-0e0d5313a6e0",
+            "74a17303-ea08-4986-894d-f13b17f5db57",
+            "40f96253-8073-4ae2-8fc6-35843a239c68",
+            "f0dbbea3-41d7-417b-9ee4-d8f09642a501",
+            "2d30b9ea-2bb6-46d9-ac86-457730a382bb",
+            "e42c7f10-a0e6-4d0e-ba7b-895403c67513",
+            "240c3509-061a-4442-9bbd-b869ef0a2da9"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1071,
+        "bottom_rank": 4001,
+        "top_rank": 5000,
+        "correct": [
+            "d15226b0-6ce3-4317-a315-dac8a60c3d12",
+            "4ca027be-6fc3-4dc4-bde6-4b17db952e04",
+            "eb0a06e0-4f78-4f42-be2a-802f827e7ea5",
+            "35a4c10d-ac05-43df-b3a9-7469a39948af"
+        ],
+        "total": [
+            "d15226b0-6ce3-4317-a315-dac8a60c3d12",
+            "d64752a7-3b83-48f5-876f-75486237eb74",
+            "6ba0a910-2000-493b-bd57-3fd7fa5aa6d0",
+            "4ca027be-6fc3-4dc4-bde6-4b17db952e04",
+            "eb0a06e0-4f78-4f42-be2a-802f827e7ea5",
+            "1ed5aea2-915d-4a98-99af-2b7d4c88307b",
+            "2306d9fb-c3d9-4b81-95c3-36ac3e0420c7",
+            "47b867e4-79ba-4228-880f-ff62bac9514e",
+            "1341211e-a1d0-498e-9b34-0e3b4fe53817",
+            "35a4c10d-ac05-43df-b3a9-7469a39948af"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1100,
+        "bottom_rank": 5001,
+        "top_rank": 6000,
+        "correct": [
+            "0603dc7b-2c80-4477-8f45-ae2134216e81",
+            "71cca56e-e45d-4f95-9d4b-7b2f31f98fb0",
+            "dacb34d0-c71f-4273-90f1-e371af074f00"
+        ],
+        "total": [
+            "0603dc7b-2c80-4477-8f45-ae2134216e81",
+            "d0fdb568-76ca-4a9a-9be0-160ac313791c",
+            "888f53f3-7de1-468e-bdd6-be97707b0f45",
+            "0687eab4-6b6c-485e-8ed3-9b34e420bb92",
+            "71cca56e-e45d-4f95-9d4b-7b2f31f98fb0",
+            "dd0daae8-1bae-4eb7-81ae-36facd1480c9",
+            "630f0848-8f20-4850-a55e-567153571d7a",
+            "dacb34d0-c71f-4273-90f1-e371af074f00",
+            "7955f978-16cf-495b-a929-749529a6dcf8",
+            "e1db0624-308f-409f-9114-00f8d47f8d64"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1168,
+        "bottom_rank": 6001,
+        "top_rank": 7000,
+        "correct": [
+            "a7bab480-06de-48f5-9e77-97c085558611",
+            "2c0158ae-e80e-4869-bc1a-73dd5e780628"
+        ],
+        "total": [
+            "a7bab480-06de-48f5-9e77-97c085558611",
+            "c4d402c1-ec9b-4e16-9561-134192936c9e",
+            "2c0158ae-e80e-4869-bc1a-73dd5e780628",
+            "e63350ce-48c1-47f5-89b9-651ef307d7f6",
+            "09ff09f2-9e5e-4c2d-8186-fb7be18465cc",
+            "1f0ceb0c-ba64-42fe-a40c-0a853c52c1df",
+            "756fa53d-7ba1-410a-8b8a-3fd85e2c2f58",
+            "b19a9fe0-c800-42af-9225-243c22597512",
+            "c86fd668-a462-43e1-b6ad-f05bc758f2ac",
+            "4b00ccfd-8f2e-4699-bb46-d27d5e4b9560"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1278,
+        "bottom_rank": 7001,
+        "top_rank": 8000,
+        "correct": [
+            "5f901a73-fcb8-45fa-9e71-180f3b6c4c34",
+            "37c6d2e7-34a7-4184-bf6c-e0ed18f34a40",
+            "82f860a0-2c34-4591-b3f7-6c44de26f544"
+        ],
+        "total": [
+            "0a31b167-031d-422f-8f47-9268c1c83d4a",
+            "c3d70eef-c422-41d2-adf0-de567ebf2943",
+            "2b55284f-de76-4ec6-b54f-734ce79ff70b",
+            "0b0ac6f1-095c-40f6-8983-21cf43430bbf",
+            "5f901a73-fcb8-45fa-9e71-180f3b6c4c34",
+            "37c6d2e7-34a7-4184-bf6c-e0ed18f34a40",
+            "82f860a0-2c34-4591-b3f7-6c44de26f544",
+            "4574a9a0-5aa4-4a11-afff-fbd85b4243c0",
+            "7c7b30c2-f356-42ee-aa1c-6221159f8474",
+            "e8880ffc-6584-4d6e-8b1f-dc7f4b7b248c"
+        ],
+        "choose": [],
+        "sample_size": 10
+    },
+    {
+        "number_in_bin": 1332,
+        "bottom_rank": 8001,
+        "top_rank": 8949,
+        "correct": [
+            "606a522f-4fcf-40ee-b01d-8f8e853d9eef",
+            "68d944b1-058a-49b8-bf7b-4a3fd93adf36"
+        ],
+        "total": [
+            "5168e6a6-c69f-4aed-9129-624d8f44c305",
+            "606a522f-4fcf-40ee-b01d-8f8e853d9eef",
+            "68d944b1-058a-49b8-bf7b-4a3fd93adf36",
+            "07564ac4-6d12-457a-a395-4329e035fabf",
+            "d0c6ac8d-8dd7-4905-980a-062a87ca1a13",
+            "9d591eb0-5a47-4743-8150-9de53d30141a",
+            "0d1fa31e-ec02-4d6c-bee5-eda724d0f961",
+            "aa6620e2-1d98-45f3-beb8-d9cc4db24b1b",
+            "c274513c-d363-4efa-bbe6-f12ce84fbc82"
+        ],
+        "choose": [],
+        "sample_size": 9
+    }
+]

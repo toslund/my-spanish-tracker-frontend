@@ -1,10 +1,5 @@
 <template>
-  <v-dialog
-    :value="value" @input="$emit('input', $event)"
-    fullscreen
-    hide-overlay
-    transition="dialog-bottom-transition"
-  >
+  <div class="main-container">
     <v-dialog v-if="isSuperUser" v-model="dialogDelete" max-width="500px">
       <v-card>
         <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
@@ -16,7 +11,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-card>
       <v-toolbar
         dark
         color="primary"
@@ -51,12 +45,12 @@
         </v-container>
       </div>
       <div v-if="loaded">
-      <v-card-title v-if="!isSuperUser" class='justify-center text-h6'>
+      <h1 v-if="!isSuperUser" class='is-flex justify-center text-h6'>
         Thank you for your time!
-      </v-card-title>
-      <v-card-title v-else class='justify-center text-h6'>
+      </h1>
+      <h1 v-else class='is-flex justify-center text-h6'>
         Results:
-      </v-card-title> 
+      </h1> 
       <v-card-title class='justify-center text-h6'>
         <span>{{isSuperUser ? 'Estimated vocabulary' : 'You have an estimated vocabulary of'}}:<span class="font-weight-bold"> {{predictedCorrect}} words</span></span>
       </v-card-title> 
@@ -97,9 +91,15 @@
         </v-simple-table>
         </v-row>
       </v-container>
+      <div class="is-flex charts-section">
       <div class="charts-gallery">
+        <div class="chart">
         <progress-chart v-if="loaded" :predictions="deck.predictions" ></progress-chart>
+        </div>
+        <div class="chart">
         <bins-chart v-if="loaded" :bins="deck.bins"></bins-chart>
+        </div>
+      </div>
       </div>
       <v-divider></v-divider>
       <v-container>
@@ -140,8 +140,7 @@
         </v-row>
       </v-container>
       </div>
-    </v-card>
-  </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -150,7 +149,7 @@ import ProgressChart from './ProgressChart.vue';
 import BinsChart from './BinsChart.vue';
 
 export default {
-  name: 'DeckDialog',
+  name: 'DeckAssessment',
   props: { value: { type: Boolean }, uuiddeck: { type: String }, givenDeck: { type: Object, optional: true, default: null } },
   components: {
     ProgressChart, BinsChart,
@@ -303,15 +302,30 @@ export default {
 </script>
 
 <style scoped>
-.charts-gallery {
-  display:grid
+
+.is-flex {
+  display: flex;
 }
 
-@media (min-width: 50em) {
+.charts-gallery {
+  padding: 1em;
+  display:grid;
+  max-width: 1200px;
+  justify-content: center;
+  gap: 1em;
+  flex-grow: 1;
+  margin: auto;
+}
+
+
+.chart {
+  min-width: 0;
+}
+
+@media (min-width: 1000px) {
   .charts-gallery {
-  width: 100%;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
+    padding: 2em;
+    grid-template-columns: 1fr 1fr;
   }
 }
 

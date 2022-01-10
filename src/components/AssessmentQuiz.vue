@@ -7,31 +7,6 @@
         class='quiz-card mx-auto'
         max-width="500"
         justify="center"
-        v-if="cardConfirmContinueAssessment"
-      >
-        <v-card-title class='justify-center black--text text--darken-4'>Continue with your assessment?</v-card-title>
-        <v-card-text class="text-center">
-          You have {{ totalQuestionsToGo }} questions to go.
-        </v-card-text>
-        <v-card-actions class="justify-center">
-          <v-btn
-            color="success"
-            @click="handleContinueAssessment"
-          >
-            Continue
-          </v-btn>
-          <v-btn
-            color="error"
-            @click="resetDeck(); cardConfirmContinueAssessment=false;"
-          >
-            Start Over
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-      <v-card
-        class='quiz-card mx-auto'
-        max-width="500"
-        justify="center"
         v-if="somethingsWrong"
       >
         <v-card-title class='justify-center black--text text--darken-4'>Something went wrong...</v-card-title>
@@ -283,8 +258,6 @@
     </v-row>
     </v-container>
       </v-card>
-    <deck-dialog v-if="doneAssessing && dialogDeckAssessment" v-model="dialogDeckAssessment" :deckUUID="assessment.deck_uuid"/>
-    <pre v-if="isSuperUser">{{ assessment }}</pre>
     </div>
   <progress-dialog 
     :questions-answered="totalQuestionsAnswered"
@@ -298,32 +271,29 @@
 
 <script>
 // import Welcome from '../components/Welcome.vue';
-import { v4 as uuidv4 } from 'uuid';
 // import Cookies from 'js-cookie';
 import axios from 'axios';
-import HelpDialog from '../components/HelpDialog.vue';
-import ProgressDialog from '../components/ProgressDialog.vue';
-import DeckDialog from '../components/DeckDialog.vue';
+import HelpDialog from './HelpDialog.vue';
+import ProgressDialog from './ProgressDialog.vue';
 
 export default {
   name: 'Assessment',
-  components: { HelpDialog, ProgressDialog, DeckDialog },
+  components: { HelpDialog, ProgressDialog },
+  props: ['uuiddeck'],
   methods: {
-    handleContinueAssessment() {
-      this.cardConfirmContinueAssessment = false;
-      this.assessing = true;
-      this.nextQuestion();
-    },
     refresh() {
       console.log('trying to refresh');
       this.initAssessment();
     },
     nextQuestion() {
       console.log('NEXT QUESTION');
-      if (this.assessment.questions_queue.length === 0 && this.assessment.prediction !== null) {
+      if (this.assessment.questions_queue.length === 0) {
         // the assessment is finished
         console.log('ASSESSMENT FINISHED');
-        this.getDeckAssessment().then((response) => {
+
+        this.$emit('completed', this.deckUUID);
+
+        this.getDeckAssessment(this.deckUUID).then((response) => {
           this.assessment = response.data;
           if (this.assessment.questions_queue.length > 0) {
             // the assessment is acutally not finished
@@ -383,57 +353,20 @@ export default {
     notZero(num) {
       return num > 4;
     },
-    async createDeck() {
-      const deckUUID = uuidv4();
-      const payload = {
-        uuid: deckUUID,
-        owner_uuid: this.userUUID,
-        name: process.env.VUE_APP_CODE,
-        email: '',
-      };
-      console.log('creating deck');
-      // const url = new URL(this.deckEndpoint);
-      
-      const options = {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${this.authToken}` },
-        data: payload,
-        url: `${this.deckEndpoint}/${deckUUID}`, 
-      };
-      const response = await axios(
-        options,
-      );
-      return response;
-    },
     async getDeck() {
       console.log('getting deck');
-      console.log(`${this.deckEndpoint}/${this.savedDeckUUID}`);
+      console.log(`${this.deckEndpoint}/${this.deckUUID}`);
       // const url = new URL(this.deckEndpoint);
-      const response = await axios.get(`${this.deckEndpoint}/${this.savedDeckUUID}`);
+      const response = await axios.get(`${this.deckEndpoint}/${this.deckUUID}`);
       console.log(`length of questions rom fetched deck: ${response.data.questions_queue.length}`);
       console.log(response);
-      return response;
-    },
-    async getDeckAssessment() {
-      console.log('getting deck assessment');
-      const url = new URL(`${this.deckEndpoint}/${this.savedDeckUUID}/assessment`);
-      // const url = new URL(this.deckEndpoint);
-      const headers = this.isLoggedIn ? { Authorization: `Bearer ${this.authToken}` } : null;
-      const options = {
-        method: 'GET',
-        headers,
-        url, 
-      };
-      const response = await axios(
-        options,
-      );
       return response;
     },
     async getQuestion() {
       console.log('getting question');
       const vocabUUID = this.assessment.questions_queue.pop();
       this.questionsAnswered.push(vocabUUID);
-      console.log(`${this.deckEndpoint}/${this.savedDeckUUID}/question`);
+      console.log(`${this.deckEndpoint}/${this.deckUUID}/question`);
       // const url = new URL(this.deckEndpoint);
       console.log('awaiting axios?');
       const url = new URL(`${this.deckEndpoint}/${this.assessment.deck_uuid}/question`);
@@ -451,11 +384,11 @@ export default {
     },
     async postQuestion() {
       console.log('creating question');
-      console.log(`${this.deckEndpoint}/${this.savedDeckUUID}/question/${this.question.uuid}`);
+      console.log(`${this.deckEndpoint}/${this.deckUUID}/question/${this.question.uuid}`);
       // const url = new URL(this.deckEndpoint);
       console.log('awaiting axios?');
       const response = await axios.post(
-        `${this.deckEndpoint}/${this.savedDeckUUID}/question/${this.question.uuid}`, this.question,
+        `${this.deckEndpoint}/${this.deckUUID}/question/${this.question.uuid}`, this.question,
       );
       return response;
     },
@@ -473,11 +406,13 @@ export default {
     },
     initAssessment() {
       // this.getVocabs();
-      if (this.savedDeckUUID === null) {
+      if (!this.deckUUID) {
         console.log('will try to create deck');
-        this.createDeck().then((response) => {
-          this.$store.commit('setDeck', response.data.deck_token);
-          return this.getDeckAssessment();
+        this.createDeck(this.$store.getters.userUUID).then((response) => {
+          this.deckUUID = response.data.deck.uuid;
+          console.log('DECK UUIDDDDDDD');
+          console.log(this.deckUUID);
+          return this.getDeckAssessment(this.deckUUID);
         }).then((response) => {
           this.assessment = response.data;
           this.assessing = true;
@@ -495,10 +430,11 @@ export default {
           }
         });
       } else {
-        this.getDeckAssessment()
+        console.log('IN ELSEEEE');
+        console.log(this.deckUUID);
+        this.getDeckAssessment(this.deckUUID)
           .then((response) => {
             this.assessment = response.data;
-            this.cardConfirmContinueAssessment = true;
             this.somethingsWrong = false;
           })
           .catch((error) => {
@@ -530,6 +466,7 @@ export default {
   },
   data() {
     return {
+      deckUUID: null,
       assessing: false,
       cardConfirmContinueAssessment: false,
       somethingsWrong: false,
@@ -680,12 +617,6 @@ export default {
     };
   },
   computed: {
-    // showKnowMaybeWordDialog() {
-    //   if (this.totalQuestionsAnsweredCorrectly > 0) {
-    //     return false;
-    //   }
-    //   return true;
-    // },
     totalQuestionsAnswered() {
       console.log('computing totalQuestionsAnswered');
       let total = 0;
@@ -708,33 +639,14 @@ export default {
       console.log('computnig totalQuestionsToGo');
       return this.assessment.questions_queue.length;
     },
-    isSuperUser() {
-      return this.$store.getters.isSuperUser;
-    },
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn;
-    },
-    authToken() {
-      return this.$store.getters.authToken;
-    },
-    userUUID() {
-      return this.$store.getters.userUUID;
-    },
-    // a computed getter
-    savedDeckUUID() {
-      return this.$store.getters.getDeckUUID;
-    },
-    savedDeckToken() {
-      return this.$store.getters.getDeckToken;
-    },
-    currentOverlay() {
-      if (this.currentOverlayKey in this.overlays) {
-        return this.overlays[this.currentOverlayKey];
-      }
-      return this.overlays.dummy;
-    },
+  },
+  created() {
+    this.deckUUID = this.uuiddeck;
+    console.log('creating component');
+    console.log(this.deckUUID);
   },
   mounted() {
+    console.log('in mounted');
     this.initAssessment();
   },
 };
