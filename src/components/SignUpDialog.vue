@@ -109,7 +109,7 @@ export default {
     },
   },
   data: () => ({
-    finished: true,
+    finished: false,
     submitted: false,
     valid: true,
     error: null,
