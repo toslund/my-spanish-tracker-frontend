@@ -3,17 +3,18 @@
   <div class="about-content mt-5">
     <h1 class="text-h6">How many words do I need to know? </h1>
     <p> This is a simple question but it has important implications for langauge learning.
-      The answer varies based on several factors. Researchers estimate that native speakers
+      Researchers estimate that native speakers
       know between 15,000 and 20,000 word families or lemmas. That's a very high bar for langague learners.
     </p>
     <p>
-      The good news though, is that Stuart Webb, professor of applied linguistics 
-      <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9922.2009.00509.x">found</a> that, in English, knowing the 3,000
+      The good news though, is that Stuart Webb, professor of applied linguistics at the University of Western Ontario,
+      <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9922.2009.00509.x">found</a> that, at least in English, knowing the 3,000
       most common lemmas provides 95% coverage in television programs. Knowing the next 5,000 lemmas
       will only push that coverage up to 98%.
     </p>
     <p>
-      According to this data, there should be diminishing gains after words 8-10 thousand.
+      According to this data, mastery of the first 8-10 thousand words should cover the vast majority of
+      everyday usage, after which you can expect diminishing returns.
     </p>
     <p>
       So what happens when we assess different spanish speakers' knowledge of the top 10,000 words with TrackMySpanish?
@@ -36,14 +37,13 @@
     </div>
     <p>
       What we can expect is that a native or fluent speaker should know all of top 10,000 words.
-      Although this is a given for a native speaker, the same feat for a langauge learner would provide
-      excellent
+      Although this is a given for a native speaker, the same feat for a langauge learner is challenging.
     </p>
     <h1 class="text-h6">Does word recognition always equate to fluency?</h1>
     <p> No. Fluency is a complex and multifaceted. A speaker could have a large vocabulary but lack verbal or
       grammatical skills. So, in theory, you could have a large vocabulary but a low level of fluency, although in
-      practice this is rare. The inverse, however, is not true.
-      If you have a native or other high level of fluency in spanish than you know these words.
+      practice this is rare. The inverse, however, is not true: You can not have a high level of fluency without knowing
+      these words. Here, unfortunately, there are no short cuts.
     </p>
     <h1 class="text-h6">What does this mean for me?</h1>
     <p>
