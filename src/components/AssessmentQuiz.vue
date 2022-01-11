@@ -19,14 +19,14 @@
         </v-card-actions>
       </v-card>
       <v-progress-linear
-      v-if="assessing"
+      v-if="!somethingsWrong"
       color="accent"
       :value="(totalQuestionsAnswered/(totalQuestionsAnswered+totalQuestionsToGo))*100"></v-progress-linear>
       <v-card
         class='quiz-card mx-auto'
         max-width="500"
         justify="center"
-        v-if="assessing"
+        v-if="!somethingsWrong"
       >
       <v-dialog
           id="knowWordCheck"
@@ -299,7 +299,6 @@ export default {
             // the assessment is acutally not finished
             this.nextQuestion(); 
           } else {
-            this.assessing = false;
             this.doneAssessing = true;
             this.dialogDeckAssessment = true;
           }
@@ -313,7 +312,6 @@ export default {
         }).catch((error) => {
           console.log('could not post question');
           console.log(error);
-          this.assessing = false;
           this.somethingsWrong = true;
         });
         // performed async with post call to avoid a screen flash
@@ -415,7 +413,6 @@ export default {
           return this.getDeckAssessment(this.deckUUID);
         }).then((response) => {
           this.assessment = response.data;
-          this.assessing = true;
           this.nextQuestion();
         }).catch((error) => {
           if (!error.status) {
@@ -467,7 +464,6 @@ export default {
   data() {
     return {
       deckUUID: null,
-      assessing: false,
       cardConfirmContinueAssessment: false,
       somethingsWrong: false,
       doneAssessing: false,
